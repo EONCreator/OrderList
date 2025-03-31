@@ -20,7 +20,8 @@ for (let i = 0; i < 25; i++) {
         deliveryDate: '2025-03-28',
         deliveryTime: '17:52',
         deliveryMethod: deliveryMethods[Math.floor(Math.random() * deliveryMethods.length)],
-        sendNotification: false
+        sendNotification: false,
+        dateCreated: new Date()
     };
     documents.push(document);
 }
