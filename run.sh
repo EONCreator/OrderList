@@ -1,6 +1,17 @@
 #!/bin/bash
 
-docker compose up --build
+docker compose up --build -d
+
+check_nginx() {
+    while true; do
+        if curl -s --head http://localhost:2301 | grep "200 OK" > /dev/null; then
+            break
+        fi
+        sleep 1
+    done
+}
+
+check_nginx
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     xdg-open http://localhost:2301
