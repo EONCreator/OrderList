@@ -35,16 +35,9 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost5173", builder =>
+    options.AddPolicy("AllowLocalhost", builder =>
     {
-        builder.WithOrigins("http://localhost:5173")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-    
-    options.AddPolicy("AllowLocalhost2301", builder =>
-    {
-        builder.WithOrigins("http://localhost:2301")
+        builder.WithOrigins("http://localhost:5173", "http://localhost:2301")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -59,8 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowLocalhost5173");
-app.UseCors("AllowLocalhost2301");
+app.UseCors("AllowLocalhost");
 app.UseHttpsRedirection();
 app.MapControllers();
 
