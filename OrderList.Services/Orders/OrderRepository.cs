@@ -20,6 +20,9 @@ public class OrderRepository(
         {
             var jsonString = record.ToString(Formatting.None);
             var bsonDocument = BsonSerializer.Deserialize<BsonDocument>(jsonString);
+            
+            string dateCreated = DateTime.UtcNow.ToString();
+            bsonDocument.Add(new BsonElement("dateCreated", dateCreated));
             await context.Records.InsertOneAsync(bsonDocument);
         }
         catch (MongoWriteException ex)

@@ -1,0 +1,53 @@
+﻿services:
+  orderlist-webapi:
+    image: orderlist-webapi
+    ports:
+      - 8080:8080
+    build:
+      context: .
+      dockerfile: OrderList.WebApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8083
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=mongodb://root:example@mongo:29211/
+    depends_on:
+      - mongo
+    
+  mongo:
+    image: mongo
+    restart: always
+    command: mongod --port 29211
+    ports:
+      - 29211:29211
+    environment:
+      MONGO_INITDB_DATABASE: OrderList
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:29211/
+      ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - mongo
+  
+  client-app:
+    build:
+      context: ./OrderList.ClientApp
+      dockerfile: Dockerfile
+    ports:
+      - "2301:2301"
+    container_name: my-vue-app
+    restart: unless-stopped
+    depends_on:
+      - orderlist-webapi

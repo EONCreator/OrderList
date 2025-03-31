@@ -1,0 +1,38 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  client-app:
+    build:
+      context: "/home/eoncreator/Рабочий стол/OrderList.WebApi/OrderList.ClientApp"
+      dockerfile: "Dockerfile"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/OrderList.ClientApp.dll"
+    environment:
+      DOTNET_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "orderlist.clientapp:dev"
+    ports: []
+    volumes:
+    - "/home/eoncreator/Рабочий стол/OrderList.WebApi/OrderList.ClientApp:/app:rw"
+    - "/home/eoncreator/Рабочий стол/OrderList.WebApi:/src:rw"
+    - "/home/eoncreator/.nuget/packages:/root/.nuget/packages"
+    working_dir: "/app"
+  orderlist-webapi:
+    build:
+      context: "/home/eoncreator/Рабочий стол/OrderList.WebApi"
+      dockerfile: "OrderList.WebApi/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/OrderList.WebApi.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "orderlist-webapi:dev"
+    ports: []
+    volumes:
+    - "/home/eoncreator/Рабочий стол/OrderList.WebApi/OrderList.WebApi:/app:rw"
+    - "/home/eoncreator/Рабочий стол/OrderList.WebApi:/src:rw"
+    - "/home/eoncreator/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
