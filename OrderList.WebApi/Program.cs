@@ -1,3 +1,4 @@
+using MongoDB.Driver;
 using Newtonsoft.Json;
 using OrderList.Application.Interfaces;
 using OrderList.Application.Orders;
@@ -42,6 +43,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
 
 var app = builder.Build();
 

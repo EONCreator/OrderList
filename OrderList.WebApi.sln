@@ -15,11 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderList.Application", "Or
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderList.ClientApp", "OrderList.ClientApp\OrderList.ClientApp.csproj", "{37F4EBC9-164F-43B9-A078-7FCB2F964C1A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-entrypoint-initdb.d", "docker-entrypoint-initdb.d", "{8E5F3C48-EC86-48A1-A823-E294FBE0F7E0}"
-	ProjectSection(SolutionItems) = preProject
-		mongo-init.js = mongo-init.js
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +43,5 @@ Global
 		{37F4EBC9-164F-43B9-A078-7FCB2F964C1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8E5F3C48-EC86-48A1-A823-E294FBE0F7E0} = {D6E11D84-55F6-485E-B071-9342D89BAC2A}
 	EndGlobalSection
 EndGlobal

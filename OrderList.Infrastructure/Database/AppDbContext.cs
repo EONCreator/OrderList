@@ -24,5 +24,8 @@ public class AppDbContext
         {
             _database.CreateCollection(collectionName);
         }
+        
+        var dataInitializer = new DataInitializer(_database);
+        dataInitializer.InitializeAsync().GetAwaiter().GetResult();
     }
 }
