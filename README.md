@@ -1,7 +1,7 @@
 To run, execute the commands:
-**cd OrderList**
-**bash run.sh**
+<p>**cd OrderList**</p>p
+<p>**bash run.sh**</p>
 
 Or
-**cd OrderList**
-**docker-compose up --build -d**
+<p>**cd OrderList**</p>
+<p>**docker-compose up --build -d**</p>
