@@ -1,5 +1,5 @@
 To run, execute the commands:
-<p>**cd OrderList**</p>p
+<p>**cd OrderList**</p>
 <p>**bash run.sh**</p>
 
 Or
